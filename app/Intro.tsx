@@ -27,11 +27,11 @@ export default function Home() {
         </View>
         <View style={{ gap: 20 }}>
           <TouchableOpacity
-            onPress={() => router.push("/(tabs)")}
+            onPress={() => router.push("/sign-in")}
             style={styles.button}
           >
             <ThemedText
-              type="nunito"
+              type="nunitoBold"
               style={{
                 textAlign: "center",
                 fontSize: 24,
@@ -41,11 +41,11 @@ export default function Home() {
             </ThemedText>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => router.push("/(tabs)")}
+            onPress={() => router.push("/sign-up")}
             style={[styles.button, { backgroundColor: "#184B48" }]}
           >
             <ThemedText
-              type="nunito"
+              type="nunitoBold"
               style={{
                 textAlign: "center",
                 fontSize: 24,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#A8FFF9",
     borderRadius: 30,
-    height: 80,
+    height: 75,
     justifyContent: "center",
   },
 });

@@ -22,6 +22,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     NunitoSans: require("../assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf"),
     NunitoSansItalic: require("../assets/fonts/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf"),
+    NunitoSansSemiBold: require("../assets/fonts/nunito-sans.semibold.ttf"),
     AlfaSlabOne: require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
   });
 
@@ -43,6 +44,8 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/sign-up" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="Intro" options={{ headerShown: false }} />
         {/* <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} /> */}

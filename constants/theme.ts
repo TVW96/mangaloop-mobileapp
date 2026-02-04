@@ -72,6 +72,7 @@ export const Fonts = Platform.select({
 
 export const AppFonts = {
   nunito: "NunitoSans",
+  nunitoBold: "NunitoSansSemiBold",
   nunitoItalic: "NunitoSansItalic",
   alfa: "AlfaSlabOne",
 };

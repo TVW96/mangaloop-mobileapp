@@ -49,7 +49,7 @@ export default function Home() {
             onPress={() => router.push("./Intro")}
           >
             <ThemedText
-              type="nunito"
+              type="nunitoBold"
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
