@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { useRouter } from "expo-router";
+import { FontAwesome } from "@expo/vector-icons";
+import { ThemedText } from "@/components/themed-text";
 
 export default function Home() {
   const router = useRouter();
@@ -8,7 +10,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => router.push("./index")}>
-        <Text>Back</Text>
+        <ThemedText>Back</ThemedText>
       </TouchableOpacity>
     </View>
   );
@@ -20,6 +22,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 48,
-    fontWeight: "bold",
+    textAlign: "center",
   },
 });
