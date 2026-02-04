@@ -3,19 +3,64 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => router.push("./index")}>
-        <ThemedText type="alfa" style={styles.title}>
-          Manga-Loop
-        </ThemedText>
-        <FontAwesome name="gear" size={20} color="#000" />
-      </TouchableOpacity>
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            flex: 2,
+          }}
+        >
+          <TouchableOpacity onPress={() => router.push("./Intro")}>
+            <ThemedText type="alfa" style={styles.title}>
+              Manga-Loop
+            </ThemedText>
+          </TouchableOpacity>
+          <FontAwesome name="gear" size={20} color="#000" />
+        </View>
+
+        <View style={styles.details}>
+          <ThemedText>
+            Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem
+            ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum
+            lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem
+            ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum
+            lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem
+            ipsum
+          </ThemedText>
+          <ThemedText>
+            Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem
+            ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum
+            lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem
+            ipsum lorem ipsum
+          </ThemedText>
+        </View>
+        <View style={{ flex: 2, justifyContent: "flex-end" }}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("./Intro")}
+          >
+            <ThemedText
+              type="nunito"
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              Continue Onward
+            </ThemedText>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -26,5 +71,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     textAlign: "center",
+    color: "#184B44",
+  },
+  details: {
+    backgroundColor: "#D9D9D9",
+    flex: 6,
+    gap: 20,
+    padding: 10,
+  },
+  button: {
+    backgroundColor: "#A8FFF9",
+    borderRadius: 30,
+    height: 80,
+    justifyContent: "center",
+    marginHorizontal: 20,
   },
 });

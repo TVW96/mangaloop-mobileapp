@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
   nunito: {
     fontFamily: AppFonts.nunito,
     fontSize: 16,
-    lineHeight: 24,
   },
   alfa: {
     fontFamily: AppFonts.alfa,
@@ -81,8 +80,16 @@ const styles = StyleSheet.create({
   alfaOutline: {
     fontFamily: AppFonts.alfa,
     fontSize: 24,
+
+    textShadowColor: "#000",
+    textShadowOffset: { width: 1, height: 4 },
+    textShadowRadius: 0,
+  },
+  alfaShadow: {
+    fontFamily: AppFonts.alfa,
+    fontSize: 24,
     textShadowColor: "#000",
     textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2,
+    textShadowRadius: 4,
   },
 });
