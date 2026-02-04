@@ -10,15 +10,25 @@ import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
 
-export default function Home() {
+export default function Intro() {
   const router = useRouter();
 
   return (
     <ImageBackground
       source={require("@/assets/images/AppBackground.png")}
       resizeMode="cover"
-      style={styles.image}
+      style={[
+        styles.image,
+        { justifyContent: "space-between", paddingTop: 40 },
+      ]}
     >
+      <ThemedText
+        type="nunitoBold"
+        style={{ fontSize: 24, justifyContent: "flex-start", paddingLeft: 10 }}
+        onPress={() => router.dismissAll()}
+      >
+        Back
+      </ThemedText>
       <View style={styles.container}>
         <View style={{ alignItems: "center", gap: 6 }}>
           <ThemedText style={styles.title} type="alfaOutline">

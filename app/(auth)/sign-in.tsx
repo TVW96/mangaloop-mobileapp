@@ -10,23 +10,24 @@ import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { Label } from "@react-navigation/elements";
 
-export default function Home() {
+export default function SignIn() {
   const router = useRouter();
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const [confirmPassword, onChangeConfirmPassword] = React.useState("");
   const [form, onChangeForm] = React.useState({
     email,
     password,
-    confirmPassword,
   });
 
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
-        <ThemedText type="alfa" style={styles.title}>
+        <ThemedText
+          type="alfa"
+          style={styles.title}
+          onPress={() => router.dismissTo("../Intro")}
+        >
           Sign-In
         </ThemedText>
         <View style={styles.inputForm}>
@@ -50,7 +51,9 @@ export default function Home() {
             placeholder="password"
           />
           <View style={{ alignItems: "flex-end" }}>
-            <ThemedText type="link">Sign-Up</ThemedText>
+            <ThemedText type="link" onPress={() => router.push("./sign-up")}>
+              Sign-Up
+            </ThemedText>
           </View>
         </View>
         <View style={{ justifyContent: "flex-end" }}>
