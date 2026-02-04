@@ -13,6 +13,7 @@ export type ThemedTextProps = TextProps & {
     | "subtitle"
     | "link"
     | "nunito"
+    | "nunitoItalic"
     | "nunitoBold"
     | "alfa"
     | "alfaOutline";
@@ -37,6 +38,7 @@ export function ThemedText({
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
         type === "nunito" ? styles.nunito : undefined,
+        type === "nunitoItalic" ? styles.nunitoItalic : undefined,
         type === "nunitoBold" ? styles.nunitoBold : undefined,
         type === "alfa" ? styles.alfa : undefined,
         type === "alfaOutline" ? styles.alfaOutline : undefined,
@@ -80,6 +82,10 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.nunito,
     fontSize: 16,
   },
+  nunitoItalic: {
+    fontFamily: AppFonts.nunitoItalic,
+    fontSize: 16,
+  },
   nunitoBold: {
     fontFamily: AppFonts.nunitoBold,
     fontSize: 16,
@@ -91,7 +97,6 @@ const styles = StyleSheet.create({
   alfaOutline: {
     fontFamily: AppFonts.alfa,
     fontSize: 24,
-
     textShadowColor: "#000",
     textShadowOffset: { width: 1, height: 4 },
     textShadowRadius: 0,

@@ -6,7 +6,13 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { useRouter } from "expo-router";
+import {
+  useRouter,
+  useFocusEffect,
+  useLocalSearchParams,
+  useGlobalSearchParams,
+  Link,
+} from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -22,6 +28,11 @@ export default function SignUp() {
     confirmPassword,
   });
 
+  const glob = useGlobalSearchParams();
+  const local = useLocalSearchParams();
+
+  console.log("Local:", local.user, "Global:", glob.user);
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
@@ -32,6 +43,7 @@ export default function SignUp() {
         >
           Sign-Up
         </ThemedText>
+
         <View style={styles.inputForm}>
           <View style={{ paddingLeft: 15 }}>
             <ThemedText type="nunitoBold">Name</ThemedText>
@@ -41,7 +53,7 @@ export default function SignUp() {
             style={styles.input}
             onChangeText={onChangeEmail}
             value={email}
-            placeholder="coinMafia@gmail.com"
+            placeholder="email@gmail.com"
           />
           <View style={{ paddingLeft: 15 }}>
             <ThemedText type="nunitoBold">Password</ThemedText>
@@ -50,7 +62,7 @@ export default function SignUp() {
             style={styles.input}
             onChangeText={onChangeEmail}
             value={email}
-            placeholder="coinMafia@gmail.com"
+            placeholder="email@gmail.com"
           />
           <View style={{ paddingLeft: 15 }}>
             <ThemedText type="nunitoBold">Confirm Password</ThemedText>
@@ -61,6 +73,7 @@ export default function SignUp() {
             value={password}
             placeholder="password"
           />
+
           <View style={{ alignItems: "flex-end" }}>
             <ThemedText type="link" onPress={() => router.push("./sign-in")}>
               Already have an account?
@@ -70,16 +83,17 @@ export default function SignUp() {
         <View style={{ justifyContent: "flex-end" }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("./Intro")}
+            onPress={() => router.push("./new-user")}
           >
             <ThemedText
               type="nunitoBold"
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
+                color: "white",
               }}
             >
-              Sign-In
+              Sign-Up
             </ThemedText>
           </TouchableOpacity>
         </View>

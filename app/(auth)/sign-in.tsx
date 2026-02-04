@@ -39,7 +39,7 @@ export default function SignIn() {
             style={styles.input}
             onChangeText={onChangeEmail}
             value={email}
-            placeholder="coinMafia@gmail.com"
+            placeholder="domonCashew@gmail.com"
           />
           <View style={{ paddingLeft: 15 }}>
             <ThemedText type="nunitoBold">Password</ThemedText>
@@ -59,13 +59,14 @@ export default function SignIn() {
         <View style={{ justifyContent: "flex-end" }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("./Intro")}
+            onPress={() => router.replace("/(pages)")}
           >
             <ThemedText
               type="nunitoBold"
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
+                color: "white",
               }}
             >
               Sign-In
@@ -83,11 +84,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 48,
-    color: "#18274B",
+    color: "#184B44",
     marginHorizontal: 10,
   },
   button: {
-    backgroundColor: "#A8FFF9",
+    backgroundColor: "#184B44",
     borderRadius: 30,
     height: 80,
     justifyContent: "center",

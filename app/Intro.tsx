@@ -45,6 +45,7 @@ export default function Intro() {
               style={{
                 textAlign: "center",
                 fontSize: 24,
+                color: "white",
               }}
             >
               Sign-In
@@ -52,7 +53,7 @@ export default function Intro() {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => router.push("/sign-up")}
-            style={[styles.button, { backgroundColor: "#184B48" }]}
+            style={[styles.button, { backgroundColor: "#113532" }]}
           >
             <ThemedText
               type="nunitoBold"
@@ -60,6 +61,7 @@ export default function Intro() {
                 textAlign: "center",
                 fontSize: 24,
                 fontWeight: "bold",
+                color: "white",
               }}
             >
               Sign-Up
@@ -91,9 +93,10 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   button: {
-    backgroundColor: "#A8FFF9",
+    backgroundColor: "#184B44",
     borderRadius: 30,
     height: 75,
     justifyContent: "center",
+    borderWidth: 1,
   },
 });

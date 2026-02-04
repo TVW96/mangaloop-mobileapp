@@ -53,6 +53,7 @@ export default function Home() {
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
+                color: "white",
               }}
             >
               Continue Onward
@@ -80,10 +81,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: "#A8FFF9",
+    backgroundColor: "#184B44",
     borderRadius: 30,
     height: 80,
     justifyContent: "center",
     marginHorizontal: 20,
+    borderWidth: 1,
   },
 });
