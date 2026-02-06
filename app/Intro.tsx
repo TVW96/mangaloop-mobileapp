@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import Animated, { FadeInUp } from "react-native-reanimated";
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
@@ -36,37 +37,54 @@ export default function Intro() {
           </ThemedText>
         </View>
         <View style={{ gap: 20 }}>
-          <TouchableOpacity
-            onPress={() => router.push("/sign-in")}
+          <Animated.View
+            entering={FadeInUp.duration(600)}
             style={styles.button}
           >
-            <ThemedText
-              type="nunitoBold"
-              style={{
-                textAlign: "center",
-                fontSize: 24,
-                color: "white",
-              }}
-            >
-              Sign-In
-            </ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => router.push("/sign-up")}
-            style={[styles.button, { backgroundColor: "#113532" }]}
+            <TouchableOpacity onPress={() => router.push("/sign-in")}>
+              <Animated.View
+                entering={FadeInUp.delay(100).duration(600)}
+                style={{ transform: [{ translateY: -2 }] }}
+              >
+                <ThemedText
+                  type="nunitoBold"
+                  style={{
+                    textAlign: "center",
+                    fontSize: 24,
+                    color: "black",
+                  }}
+                >
+                  Sign-In
+                </ThemedText>
+              </Animated.View>
+            </TouchableOpacity>
+          </Animated.View>
+          <Animated.View
+            entering={FadeInUp.delay(150).duration(600)}
+            style={[
+              styles.button,
+              { backgroundColor: "rgba(168, 255, 249, 0.23)", height: 50 },
+            ]}
           >
-            <ThemedText
-              type="nunitoBold"
-              style={{
-                textAlign: "center",
-                fontSize: 24,
-                fontWeight: "bold",
-                color: "white",
-              }}
-            >
-              Sign-Up
-            </ThemedText>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push("/sign-up")}>
+              <Animated.View
+                entering={FadeInUp.delay(250).duration(600)}
+                style={{ transform: [{ translateY: -2 }] }}
+              >
+                <ThemedText
+                  type="nunitoBold"
+                  style={{
+                    textAlign: "center",
+                    fontSize: 24,
+                    fontWeight: "bold",
+                    color: "white",
+                  }}
+                >
+                  Sign-Up
+                </ThemedText>
+              </Animated.View>
+            </TouchableOpacity>
+          </Animated.View>
         </View>
       </View>
     </ImageBackground>
@@ -77,11 +95,12 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "flex-end",
+    paddingBottom: 40,
   },
   container: {
     justifyContent: "space-between",
-    height: "70%",
-    paddingVertical: 20,
+    height: "75%",
+    paddingVertical: 40,
     paddingHorizontal: 10,
   },
   title: {
@@ -93,10 +112,9 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   button: {
-    backgroundColor: "#184B44",
-    borderRadius: 30,
-    height: 75,
+    backgroundColor: "#A8FFF9",
+    borderRadius: 100,
+    height: 70,
     justifyContent: "center",
-    borderWidth: 1,
   },
 });

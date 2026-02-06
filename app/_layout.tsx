@@ -10,12 +10,36 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { SplashScreenController } from "@/components/splash-screen-controller";
+import { useAuthContext } from "@/hooks/use-auth-context";
+import AuthProvider from "@/providers/auth-provider";
 
-SplashScreen.preventAutoHideAsync();
+function RootNavigator() {
+  const { isLoggedIn } = useAuthContext();
+  return (
+    <Stack>
+      <Stack.Protected guard={isLoggedIn}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(pages)" options={{ headerShown: false }} />
+      </Stack.Protected>
+      <Stack.Protected guard={!isLoggedIn}>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="Intro" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/sign-up" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/new-user" options={{ headerShown: false }} />
+      </Stack.Protected>
 
-export const unstable_settings = {
-  anchor: "index",
-};
+      <Stack.Screen name="+not-found" />
+    </Stack>
+  );
+}
+
+// SplashScreen.preventAutoHideAsync();
+
+// export const unstable_settings = {
+//   anchor: "index",
+// };
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -42,16 +66,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="Intro" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(pages)" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)/sign-up" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)/new-user" options={{ headerShown: false }} />
+      <AuthProvider>
+        <SplashScreenController />
+        <RootNavigator />
         {/* <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} /> */}
-      </Stack>
+      </AuthProvider>
       <StatusBar style="auto" />
     </ThemeProvider>
   );

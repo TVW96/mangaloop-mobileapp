@@ -1,24 +1,35 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  Linking,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Linking } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "expo-router";
-import { FontAwesome } from "@expo/vector-icons";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { supabase } from "@/lib/supabase";
 
 export default function NewUser() {
   const router = useRouter();
+  const { email } = useLocalSearchParams<{ email?: string }>();
   const [resendTimer, setResendTimer] = useState(15);
   const resendEmail = async () => {
     if (resendTimer > 0) return;
     try {
-      // TODO: Send email confirmation payload
+      if (!email) {
+        alert("Missing email address.");
+        return;
+      }
+
+      const { error } = await supabase.auth.resend({
+        type: "signup",
+        email: String(email),
+        options: {
+          emailRedirectTo: "mangaloop://auth/callback",
+        },
+      });
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
       alert("email sent");
       setResendTimer(15);
     } catch {

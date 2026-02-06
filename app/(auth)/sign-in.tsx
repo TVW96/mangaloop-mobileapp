@@ -1,24 +1,33 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 import { useRouter } from "expo-router";
-import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { supabase } from "@/lib/supabase";
 
 export default function SignIn() {
   const router = useRouter();
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const [form, onChangeForm] = React.useState({
-    email,
-    password,
-  });
+
+  const handleSignIn = async () => {
+    if (!email || !password) {
+      alert("Please enter email and password.");
+      return;
+    }
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    router.replace("/(pages)");
+  };
 
   return (
     <SafeAreaProvider>
@@ -49,6 +58,7 @@ export default function SignIn() {
             onChangeText={onChangePassword}
             value={password}
             placeholder="password"
+            secureTextEntry
           />
           <View style={{ alignItems: "flex-end" }}>
             <ThemedText type="link" onPress={() => router.push("./sign-up")}>
@@ -57,10 +67,7 @@ export default function SignIn() {
           </View>
         </View>
         <View style={{ justifyContent: "flex-end" }}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => router.replace("/(pages)")}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleSignIn}>
             <ThemedText
               type="nunitoBold"
               style={{

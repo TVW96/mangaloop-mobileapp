@@ -1,37 +1,42 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
-import {
-  useRouter,
-  useFocusEffect,
-  useLocalSearchParams,
-  useGlobalSearchParams,
-  Link,
-} from "expo-router";
-import { FontAwesome } from "@expo/vector-icons";
+import { StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
+import { useRouter } from "expo-router";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { supabase } from "@/lib/supabase";
 
 export default function SignUp() {
   const router = useRouter();
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [confirmPassword, onChangeConfirmPassword] = React.useState("");
-  const [form, onChangeForm] = React.useState({
-    email,
-    password,
-    confirmPassword,
-  });
 
-  const glob = useGlobalSearchParams();
-  const local = useLocalSearchParams();
+  const sendEmailConfirm = async () => {
+    if (!email || !password || !confirmPassword) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
 
-  console.log("Local:", local.user, "Global:", glob.user);
+    const { error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        emailRedirectTo: "mangaloop://auth/callback",
+      },
+    });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    console.log("email sent to " + email);
+    router.push({ pathname: "/(auth)/new-user", params: { email } });
+  };
 
   return (
     <SafeAreaProvider>
@@ -46,7 +51,7 @@ export default function SignUp() {
 
         <View style={styles.inputForm}>
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold">Name</ThemedText>
+            <ThemedText type="nunitoBold">Email</ThemedText>
           </View>
 
           <TextInput
@@ -60,18 +65,20 @@ export default function SignUp() {
           </View>
           <TextInput
             style={styles.input}
-            onChangeText={onChangeEmail}
-            value={email}
-            placeholder="email@gmail.com"
+            onChangeText={onChangePassword}
+            value={password}
+            placeholder="password"
+            secureTextEntry
           />
           <View style={{ paddingLeft: 15 }}>
             <ThemedText type="nunitoBold">Confirm Password</ThemedText>
           </View>
           <TextInput
             style={styles.input}
-            onChangeText={onChangePassword}
-            value={password}
-            placeholder="password"
+            onChangeText={onChangeConfirmPassword}
+            value={confirmPassword}
+            placeholder="confirm password"
+            secureTextEntry
           />
 
           <View style={{ alignItems: "flex-end" }}>
@@ -83,7 +90,7 @@ export default function SignUp() {
         <View style={{ justifyContent: "flex-end" }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("./new-user")}
+            onPress={() => sendEmailConfirm()}
           >
             <ThemedText
               type="nunitoBold"

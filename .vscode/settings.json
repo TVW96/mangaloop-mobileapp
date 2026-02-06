@@ -6,5 +6,6 @@
   },
   "reactSnippets.settings.prettierEnabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.tabCompletion": "onlySnippets"
+  "editor.tabCompletion": "onlySnippets",
+  "cSpell.words": ["Ggevnhy", "SUPABASE"]
 }
