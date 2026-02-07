@@ -10,6 +10,7 @@ import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import SignOutButton from "@/components/social-auth-buttons/sign-out-button";
 
 export default function Home() {
   const router = useRouter();
@@ -27,10 +28,13 @@ export default function Home() {
   const ProfileHeader = () => {
     return (
       <View>
-        <ButtonItem title="shelf" />
-        <ButtonItem title="shelf" />
-        <ButtonItem title="shelf" />
-        <ButtonItem title="shelf" />
+        <View>
+          <ButtonItem title="shelf" />
+          <ButtonItem title="shelf" />
+          <ButtonItem title="shelf" />
+          <ButtonItem title="shelf" />
+        </View>
+        <SignOutButton />
       </View>
     );
   };

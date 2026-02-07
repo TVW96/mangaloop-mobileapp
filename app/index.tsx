@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Colors } from "@/constants/theme";
 
 export default function Home() {
   const router = useRouter();
@@ -53,7 +54,7 @@ export default function Home() {
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
-                color: "white",
+                color: "black",
               }}
             >
               Continue Onward
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     textAlign: "center",
-    color: "#184B44",
+    color: Colors.darkGreen,
   },
   details: {
     backgroundColor: "#D9D9D9",
@@ -81,11 +82,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: "#184B44",
+    backgroundColor: Colors.whiteBlue,
     borderRadius: 30,
     height: 80,
     justifyContent: "center",
     marginHorizontal: 20,
-    borderWidth: 1,
+    marginVertical: 40,
   },
 });

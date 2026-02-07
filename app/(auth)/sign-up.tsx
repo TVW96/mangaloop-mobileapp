@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { ThemedText } from "@/components/themed-text";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { supabase } from "@/lib/supabase";
+import { Colors } from "@/constants/theme";
 
 export default function SignUp() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function SignUp() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
+      <SafeAreaView style={styles.container}>
         <ThemedText
           type="alfa"
           style={styles.title}
@@ -51,7 +52,9 @@ export default function SignUp() {
 
         <View style={styles.inputForm}>
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold">Email</ThemedText>
+            <ThemedText type="nunitoBold" style={{ color: Colors.whiteBlue }}>
+              Email
+            </ThemedText>
           </View>
 
           <TextInput
@@ -61,7 +64,9 @@ export default function SignUp() {
             placeholder="email@gmail.com"
           />
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold">Password</ThemedText>
+            <ThemedText type="nunitoBold" style={{ color: Colors.whiteBlue }}>
+              Password
+            </ThemedText>
           </View>
           <TextInput
             style={styles.input}
@@ -71,7 +76,9 @@ export default function SignUp() {
             secureTextEntry
           />
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold">Confirm Password</ThemedText>
+            <ThemedText type="nunitoBold" style={{ color: Colors.whiteBlue }}>
+              Confirm Password
+            </ThemedText>
           </View>
           <TextInput
             style={styles.input}
@@ -97,7 +104,7 @@ export default function SignUp() {
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
-                color: "white",
+                color: "black",
               }}
             >
               Sign-Up
@@ -112,14 +119,19 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: Colors.blue,
+    paddingBottom: 100,
+    paddingVertical: 100,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 48,
-    color: "#184B44",
+    color: Colors.whiteBlue,
     marginHorizontal: 10,
   },
   button: {
-    backgroundColor: "#184B44",
+    backgroundColor: Colors.whiteBlue,
     borderRadius: 30,
     height: 80,
     justifyContent: "center",
@@ -128,6 +140,7 @@ const styles = StyleSheet.create({
   inputForm: {
     gap: 15,
     marginHorizontal: 10,
+    marginTop: 100,
   },
   input: {
     backgroundColor: "#999999",

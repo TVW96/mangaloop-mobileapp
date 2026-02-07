@@ -10,6 +10,7 @@ import Animated, { FadeInUp } from "react-native-reanimated";
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { ThemedText } from "@/components/themed-text";
+import { Colors } from "@/constants/theme";
 
 export default function Intro() {
   const router = useRouter();
@@ -18,17 +19,19 @@ export default function Intro() {
     <ImageBackground
       source={require("@/assets/images/AppBackground.png")}
       resizeMode="cover"
-      style={[
-        styles.image,
-        { justifyContent: "space-between", paddingTop: 40 },
-      ]}
+      style={styles.image}
+      imageStyle={{ opacity: 0.9 }}
     >
       <ThemedText
         type="nunitoBold"
-        style={{ fontSize: 24, justifyContent: "flex-start", paddingLeft: 10 }}
+        style={{
+          fontSize: 24,
+          justifyContent: "flex-start",
+          paddingLeft: 10,
+        }}
         onPress={() => router.dismissAll()}
       >
-        Back
+        Go Back
       </ThemedText>
       <View style={styles.container}>
         <View style={{ alignItems: "center", gap: 6 }}>
@@ -51,7 +54,7 @@ export default function Intro() {
                   style={{
                     textAlign: "center",
                     fontSize: 24,
-                    color: "black",
+                    color: Colors.gold,
                   }}
                 >
                   Sign-In
@@ -63,7 +66,7 @@ export default function Intro() {
             entering={FadeInUp.delay(150).duration(600)}
             style={[
               styles.button,
-              { backgroundColor: "rgba(168, 255, 249, 0.23)", height: 50 },
+              { backgroundColor: Colors.whiteBlue, height: 50 },
             ]}
           >
             <TouchableOpacity onPress={() => router.push("/sign-up")}>
@@ -77,7 +80,7 @@ export default function Intro() {
                     textAlign: "center",
                     fontSize: 24,
                     fontWeight: "bold",
-                    color: "white",
+                    color: "black",
                   }}
                 >
                   Sign-Up
@@ -94,8 +97,8 @@ export default function Intro() {
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    justifyContent: "flex-end",
-    paddingBottom: 40,
+    justifyContent: "space-between",
+    paddingVertical: 100,
   },
   container: {
     justifyContent: "space-between",
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   button: {
-    backgroundColor: "#A8FFF9",
+    backgroundColor: Colors.blue,
     borderRadius: 100,
     height: 70,
     justifyContent: "center",

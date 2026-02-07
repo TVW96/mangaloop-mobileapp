@@ -9,6 +9,13 @@ const tintColorLight = "#0a7ea4";
 const tintColorDark = "#fff";
 
 export const Colors = {
+  green: "#184B44",
+  darkGreen: "#113532",
+  blue: "#18274B",
+  darkBlue: "#111B34",
+  whiteBlue: "#a8fff9",
+  gold: "#FFD700",
+
   light: {
     text: "#11181C",
     background: "#fff",
