@@ -14,6 +14,12 @@ import { SplashScreenController } from "@/components/splash-screen-controller";
 import { useAuthContext } from "@/hooks/use-auth-context";
 import AuthProvider from "@/providers/auth-provider";
 
+SplashScreen.preventAutoHideAsync();
+
+export const unstable_settings = {
+  anchor: "index",
+};
+
 function RootNavigator() {
   const { isLoggedIn } = useAuthContext();
   return (
@@ -35,12 +41,6 @@ function RootNavigator() {
   );
 }
 
-// SplashScreen.preventAutoHideAsync();
-
-// export const unstable_settings = {
-//   anchor: "index",
-// };
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded, error] = useFonts({
@@ -54,7 +54,6 @@ export default function RootLayout() {
     if (error) {
       throw error;
     }
-
     if (loaded) {
       SplashScreen.hideAsync();
     }

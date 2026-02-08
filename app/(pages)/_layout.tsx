@@ -25,6 +25,17 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
+          tabBarStyle: { display: "none" },
+        }}
+      />
+      <Tabs.Screen
+        name="book-store"
+        options={{
+          title: "Store",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
+          tabBarStyle: { display: "none" },
         }}
       />
     </Tabs>
