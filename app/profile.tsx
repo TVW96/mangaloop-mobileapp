@@ -15,21 +15,44 @@ import SignOutButton from "@/components/social-auth-buttons/sign-out-button";
 import Header from "@/components/profile/header";
 import { Colors } from "@/constants/theme";
 
-export default function Home() {
+export default function Profile() {
   const router = useRouter();
-
-  const ButtonItem = ({ title }: { title: string }) => (
-    <TouchableOpacity
-      style={styles.headerBtn}
-      onPress={() => router.push(`./${title}`)}
-    >
-      <ThemedText type="alfa" style={{ color: "white", fontSize: 18 }}>
-        {title.charAt(0).toUpperCase() + title.slice(1)}
-      </ThemedText>
-    </TouchableOpacity>
-  );
+  const userID = 1234;
 
   const ProfileHeader = () => {
+    const styles = StyleSheet.create({
+      profileHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+      },
+      headerBtnGroup: {
+        flexDirection: "column",
+        gap: 5,
+      },
+      headerBtn: {
+        height: 42,
+        width: 150,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 5,
+      },
+    });
+
+    const ButtonItem = ({
+      title,
+      onPress,
+    }: {
+      title: string;
+      onPress?: () => void;
+    }) => (
+      <TouchableOpacity style={styles.headerBtn} onPress={onPress}>
+        <ThemedText type="alfa" style={{ color: "white", fontSize: 16 }}>
+          View {title.charAt(0).toUpperCase() + title.slice(1)}
+        </ThemedText>
+      </TouchableOpacity>
+    );
+
     return (
       <View style={{ justifyContent: "space-between" }}>
         <View style={styles.profileHeader}>
@@ -52,13 +75,15 @@ export default function Home() {
           </View>
 
           <View style={styles.headerBtnGroup}>
-            <ButtonItem title="shelf" />
-            <ButtonItem title="shelf" />
-            <ButtonItem title="shelf" />
-            <ButtonItem title="shelf" />
+            <ButtonItem
+              title="shelf"
+              onPress={() => router.push(`/inventory`)}
+            />
+            <ButtonItem title="coin" />
+            <ButtonItem title="settings" />
           </View>
+          <SignOutButton />
         </View>
-        <SignOutButton />
       </View>
     );
   };
@@ -69,30 +94,19 @@ export default function Home() {
         <SafeAreaView style={styles.headerContainer}>
           <ProfileHeader />
         </SafeAreaView>
-        <View
-          style={{
-            flex: 1,
-            height: "100%",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <View style={styles.body}>
           <ThemedText
             style={{
               textAlign: "center",
             }}
           >
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-            ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-            ipsum Lorem ipsum
+            Profile details go here.
           </ThemedText>
         </View>
         <View style={[styles.container, { justifyContent: "flex-end" }]}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("/(pages)/book-store")}
+            onPress={() => router.push("/inventory")}
           >
             <ThemedText type="alfa" style={{ fontSize: 42 }}>
               Find Manga
@@ -110,10 +124,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   body: {
-    flex: 1,
     paddingHorizontal: 10,
-    height: "100%",
-    width: "100%",
+    paddingTop: 10,
     justifyContent: "center",
   },
   title: {
@@ -124,24 +136,7 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     paddingTop: 40,
   },
-  profileHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  headerBtnGroup: {
-    flexDirection: "column",
-    gap: 20,
-  },
-  headerBtn: {
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
-    height: 42,
-    width: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 5,
-  },
   button: {
-    backgroundColor: Colors.whiteBlue,
     width: "100%",
     height: 150,
     alignItems: "center",
@@ -149,7 +144,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   headerContainer: {
-    backgroundColor: "#184B44",
+    backgroundColor: "#069af3",
     borderBottomLeftRadius: 40,
     paddingTop: 10,
     paddingHorizontal: 20,

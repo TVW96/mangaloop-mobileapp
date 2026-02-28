@@ -13,6 +13,12 @@ import "react-native-reanimated";
 import { SplashScreenController } from "@/components/splash-screen-controller";
 import { useAuthContext } from "@/hooks/use-auth-context";
 import AuthProvider from "@/providers/auth-provider";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+/* import all the icons in Free Solid, Free Regular, and Brands styles */
+import { fas, faCoins } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas, faCoins);
 
 SplashScreen.preventAutoHideAsync();
 
@@ -24,17 +30,14 @@ function RootNavigator() {
   const { isLoggedIn } = useAuthContext();
   return (
     <Stack>
-      <Stack.Protected guard={isLoggedIn}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(pages)" options={{ headerShown: false }} />
-      </Stack.Protected>
-      <Stack.Protected guard={!isLoggedIn}>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="Intro" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)/sign-up" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)/new-user" options={{ headerShown: false }} />
-      </Stack.Protected>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="Intro" options={{ headerShown: false }} />
+      <Stack.Screen name="profile" options={{ headerShown: false }} />
+      <Stack.Screen name="inventory" options={{ headerShown: false }} />
+      <Stack.Screen name="coin" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)/sign-up" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)/new-user" options={{ headerShown: false }} />
 
       <Stack.Screen name="+not-found" />
     </Stack>

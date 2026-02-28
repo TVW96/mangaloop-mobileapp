@@ -52,11 +52,8 @@ export default function SignUp() {
 
         <View style={styles.inputForm}>
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold" style={{ color: Colors.whiteBlue }}>
-              Email
-            </ThemedText>
+            <ThemedText type="nunitoBold">Email</ThemedText>
           </View>
-
           <TextInput
             style={styles.input}
             onChangeText={onChangeEmail}
@@ -64,9 +61,7 @@ export default function SignUp() {
             placeholder="email@gmail.com"
           />
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold" style={{ color: Colors.whiteBlue }}>
-              Password
-            </ThemedText>
+            <ThemedText type="nunitoBold">Password</ThemedText>
           </View>
           <TextInput
             style={styles.input}
@@ -76,9 +71,7 @@ export default function SignUp() {
             secureTextEntry
           />
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText type="nunitoBold" style={{ color: Colors.whiteBlue }}>
-              Confirm Password
-            </ThemedText>
+            <ThemedText type="nunitoBold">Confirm Password</ThemedText>
           </View>
           <TextInput
             style={styles.input}
@@ -87,13 +80,17 @@ export default function SignUp() {
             placeholder="confirm password"
             secureTextEntry
           />
-
           <View style={{ alignItems: "flex-end" }}>
-            <ThemedText type="link" onPress={() => router.push("./sign-in")}>
+            <ThemedText
+              type="nunitoBold"
+              style={{ color: "blue" }}
+              onPress={() => router.push("./sign-in")}
+            >
               Already have an account?
             </ThemedText>
           </View>
         </View>
+
         <View style={{ justifyContent: "flex-end" }}>
           <TouchableOpacity
             style={styles.button}
@@ -119,31 +116,26 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: Colors.blue,
-    paddingBottom: 100,
-    paddingVertical: 100,
+    justifyContent: "center",
+    backgroundColor: "#069af3",
     paddingHorizontal: 20,
   },
   title: {
     fontSize: 48,
-    color: Colors.whiteBlue,
-    marginHorizontal: 10,
+    color: "white",
   },
   button: {
-    backgroundColor: Colors.whiteBlue,
+    backgroundColor: "white",
     borderRadius: 30,
-    height: 80,
+    height: 70,
     justifyContent: "center",
-    marginHorizontal: 20,
   },
   inputForm: {
     gap: 15,
-    marginHorizontal: 10,
-    marginTop: 100,
+    margin: 10,
   },
   input: {
-    backgroundColor: "#999999",
+    backgroundColor: "white",
     borderRadius: 15,
     height: 50,
     padding: 10,

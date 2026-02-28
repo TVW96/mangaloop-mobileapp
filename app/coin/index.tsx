@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-export default function Profile() {
+export default function Coin() {
   return (
     <View>
-      <Text>profile</Text>
+      <Text>Coin</Text>
     </View>
   );
 }

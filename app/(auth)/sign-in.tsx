@@ -42,9 +42,7 @@ export default function SignIn() {
         </ThemedText>
         <View style={styles.inputForm}>
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText style={{ color: Colors.whiteBlue }} type="nunitoBold">
-              Name
-            </ThemedText>
+            <ThemedText type="nunitoBold">Name</ThemedText>
           </View>
 
           <TextInput
@@ -54,9 +52,7 @@ export default function SignIn() {
             placeholder="domonCashew@gmail.com"
           />
           <View style={{ paddingLeft: 15 }}>
-            <ThemedText style={{ color: Colors.whiteBlue }} type="nunitoBold">
-              Password
-            </ThemedText>
+            <ThemedText type="nunitoBold">Password</ThemedText>
           </View>
           <TextInput
             style={styles.input}
@@ -66,13 +62,20 @@ export default function SignIn() {
             secureTextEntry
           />
           <View style={{ alignItems: "flex-end" }}>
-            <ThemedText type="link" onPress={() => router.push("./sign-up")}>
-              Sign-Up
+            <ThemedText
+              type="nunitoBold"
+              style={{ color: "blue" }}
+              onPress={() => router.push("./sign-up")}
+            >
+              Don't have an account?
             </ThemedText>
           </View>
         </View>
         <View style={{ justifyContent: "flex-end" }}>
-          <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/profile")} // replace with handleSignIn
+          >
             <ThemedText
               type="nunitoBold"
               style={{
@@ -93,31 +96,26 @@ export default function SignIn() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: Colors.blue,
-    paddingBottom: 100,
-    paddingVertical: 100,
+    justifyContent: "center",
+    backgroundColor: "#069af3",
     paddingHorizontal: 20,
   },
   title: {
     fontSize: 48,
-    color: Colors.whiteBlue,
-    marginHorizontal: 10,
+    color: "white",
   },
   button: {
-    backgroundColor: Colors.whiteBlue,
+    backgroundColor: "white",
     borderRadius: 30,
-    height: 80,
+    height: 70,
     justifyContent: "center",
-    marginHorizontal: 20,
   },
   inputForm: {
     gap: 15,
-    marginHorizontal: 10,
-    marginTop: 100,
+    margin: 10,
   },
   input: {
-    backgroundColor: "#999999",
+    backgroundColor: "white",
     borderRadius: 15,
     height: 50,
     padding: 10,
